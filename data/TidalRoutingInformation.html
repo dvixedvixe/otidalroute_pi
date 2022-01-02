@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Tidal Routing Plugin for OpenCPN</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.5  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Mike Rossiter">
+	<META NAME="CHANGED" CONTENT="20181231;16400801">
+	<META NAME="CHANGEDBY" CONTENT="Mike Rossiter">
+	<STYLE TYPE="text/css">
+	<!--
+		P { color: #000000 }
+		H3 { color: #000000 }
+		H1 { color: #000000 }
+		H4 { color: #000000 }
+		H4.cjk { font-family: "SimSun" }
+		H4.ctl { font-family: "Mangal" }
+		A:link { color: #0000e2 }
+		A:visited { color: #bb0000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-GB" TEXT="#000000" LINK="#0000e2" VLINK="#bb0000" BGCOLOR="#ffffff" DIR="LTR">
+<H1 ALIGN=CENTER>Tidal Routing Plugin for OpenCPN</H1>
+<H3>Introduction</H3>
+<P>The Tidal Routing Plugin is designed to compute DR and ETA
+positions along a previously planned outline route. The ETA
+calculation uses tidal current GRIB files, in conjunction with the
+Grib Plugin.</P>
+<H3>Quick Start</H3>
+<P>You will need to start by exporting the outline planned route as a
+GPX file to an easily found location on your computer. When the
+calculation of the tidal route starts you will be asked for the
+name/location of this file.</P>
+<P>For ETA calculations, load the GRIB file containing tidal current
+data using the grib plugin. Next, open the Tidal Routing plugin from
+the main toolbar. 
+</P>
+<P>For DR calculations the plugin will ignore the Grib plugin and any
+grib data.</P>
+<P>Enter the name for the route When ready, select &quot;Calculate
+DR&quot; or &ldquo;Calculate ETA&rdquo; from the plugin dialogue to
+compute the route. 
+</P>
+<P>If you decide to &ldquo;Save as GPX File&rdquo; this will make a
+file that can then be imported into OpenCPN. The advantage of this
+will be that the route shown on the chart will have named waypoints.
+Those made within the plugin are not named.</P>
+<H3>Failures</H3>
+<P>If the ETA route fails to compute this could be due to the GRIB
+file not covering the time period for undertaking the planned route.</P>
+<P>The GRIB file must cover the whole area of the planned route.</P>
+<P>By inspecting the GRIB coverage of the route, there may be legs of
+the route which do not lie within 4 grib points. In this case the
+calculation will fail because the tidal current set/rate cannot be
+estimated. The outline route can be adjusted so that it falls within
+the grib coverage and then saved as a new GPX file. This problem is
+most common near the coastline.</P>
+<H3>Limitations</H3>
+<P>No account is taken of the ability to sail this route. Constant
+speeds in still water are assumed.</P>
+<P>Further work will be needed in areas where tidal current gribs are
+not available.</P>
+<P>All bearings/courses are in Degrees True. For ETA calculations the
+times used from the GRIB will be in the same timezone as the GRIB,
+often UTC.</P>
+<H3>GRIB resources</H3>
+<P><A HREF="http://www.sailingweatheronline.com/">http://www.sailingweatheronline.com</A>
+is a good source for downloading tidal current gribs.</P>
+<H4 CLASS="western">The Tidal Routing plugin is written and
+maintained by Mike Rossiter. Sean Depagnier's work on the Weather
+Routing plugin formed the template for this plugin. 
+</H4>
+<P>Please contact me with questions, suggestions and feedback. 
+</P>
+</BODY>
+</HTML>

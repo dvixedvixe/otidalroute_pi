@@ -1,0 +1,504 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the otidalroute_pi package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: otidalroute_pi 1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-31 18:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/otidalroute_pi.cpp:127 src/otidalrouteUIDialog.cpp:2454
+#: src/otidalrouteUIDialog.cpp:2471 src/otidalrouteUIDialog.cpp:2541
+#: src/otidalrouteUIDialog.cpp:2620
+msgid "otidalroute"
+msgstr ""
+
+#: src/otidalroute_pi.cpp:189
+msgid "otidalroute PlugIn for OpenCPN"
+msgstr ""
+
+#: src/otidalroute_pi.cpp:195
+msgid ""
+"otidalroute PlugIn for OpenCPN\n"
+"Calculates EP positions/Courses using Grib tidal current data.\n"
+"\n"
+"\t\t\t   "
+msgstr ""
+
+#: src/otidalroute_pi.cpp:427
+msgid "Grib plugin version not supported."
+msgstr ""
+
+#: src/otidalroute_pi.cpp:429
+#, c-format
+msgid "Use versions %d.%d to %d.%d"
+msgstr ""
+
+#: src/otidalroute_pi.cpp:430
+msgid "Weather Routing"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:104
+msgid "&Guide"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:108
+msgid "&About"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:166
+msgid "Display tidal rates (knots)"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:169
+msgid "Display tidal direction"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:172
+msgid "Fill Colour"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:181
+msgid "Tidal Current Arrow Colour"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:201
+msgid "      < 0.5 knots"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:206
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:211
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:216
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:221
+msgid ">= 3.5 knots    "
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:272 src/tableroutes.cpp:214
+msgid "Routes"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:285
+msgid "Delete"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:288
+msgid "Route Table"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:291
+msgid "Chart Route"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:294 src/otidalrouteUIDialogBase.cpp:428
+msgid "Close"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:349 src/otidalrouteUIDialogBase.cpp:373
+msgid "Please select a route"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:405
+msgid "oTidalRoute Plugin Version"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:416
+msgid ""
+"The oTidalRoute plugin for opencpn is intended to calculate routes based on "
+"computerized tidal data.\n"
+"\n"
+"License: GPLv3+\n"
+"\n"
+"Source Code:\n"
+"https://github.com/rasbats/oTidalRoute_pi\n"
+"\n"
+"Author:\n"
+"Mike Rossiter\n"
+"\n"
+"Many thanks to all translators and testers."
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.cpp:425
+msgid "About Author"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.h:141
+msgid "Preferences"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.h:173 src/otidalrouteUIDialog.cpp:154
+msgid "Tidal Routes"
+msgstr ""
+
+#: src/otidalrouteUIDialogBase.h:199
+msgid "About Weather Routing"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:267
+msgid "No routes have been calculated"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:270
+msgid "Delete all routes?\n"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:271
+msgid "Delete All Routes"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:327
+msgid "TidalRoutingInformation.html"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:353
+msgid "No routes found. Please make a route"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:405 src/otidalrouteUIDialog.cpp:478
+msgid "Please select or generate a route"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:591
+msgid "ETA Route has been charted!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:594
+msgid "DR Route has been charted!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:665 src/otidalrouteUIDialog.cpp:1427
+msgid "Please enter a name for the route!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:685 src/otidalrouteUIDialog.cpp:698
+msgid "DR"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:692 src/otidalrouteUIDialog.cpp:1462
+msgid "Route name already exists, please edit the name"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:727
+msgid "Export DR Positions in GPX file as"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:741 src/otidalrouteUIDialog.cpp:1510
+msgid "error in input range validation"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1058 src/otidalrouteUIDialog.cpp:1080
+#: src/otidalrouteUIDialog.cpp:1112 src/otidalrouteUIDialog.cpp:1839
+#: src/otidalrouteUIDialog.cpp:1861 src/otidalrouteUIDialog.cpp:1893
+msgid ""
+"Unable to calculate ETA over two legs at this speed. \n"
+"\n"
+" Aborting"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1322 src/otidalrouteUIDialog.cpp:1325
+#: src/otidalrouteUIDialog.cpp:2115 src/otidalrouteUIDialog.cpp:2118
+#, c-format
+msgid "%.1f"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1416 src/otidalrouteUIDialog.cpp:1417
+#: src/otidalrouteUIDialog.cpp:2206 src/otidalrouteUIDialog.cpp:2207
+msgid "Error in calculation. Please check input!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1421
+msgid "DR Route has been calculated!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1432
+msgid "Open the GRIB plugin and select a time!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1455 src/otidalrouteUIDialog.cpp:1468
+#: src/otidalrouteUIDialog.cpp:2316 src/routeprop.cpp:559 src/routeprop.cpp:761
+msgid "ETA"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1496
+msgid "Export ETA Positions in GPX file as"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1682 src/otidalrouteUIDialog.cpp:2019
+msgid ""
+"Route start date is not compatible with this Grib \n"
+" Or Grib is not available for part of the route"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:1691 src/otidalrouteUIDialog.cpp:2049
+msgid ""
+"Unable to compute speed over ground with this tide and boat speed, \n"
+"\n"
+" Aborting"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2214
+msgid "ETA Routes have been calculated!"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2230
+msgid "Import GPX Route file"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2261
+msgid "Failed to load file: "
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2266
+msgid "rte Invalid xml file"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2281
+msgid "Route"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2281
+msgid "Loading"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2424
+msgid "oTidalRoute"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2430
+msgid "Failed to load file."
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2435
+msgid "Invalid xml file"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2454
+msgid "Load"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2470
+msgid "File contains duplicate position name, discarding\n"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2532
+msgid "Unrecognized xml node"
+msgstr ""
+
+#: src/otidalrouteUIDialog.cpp:2619
+msgid "Failed to save xml file: "
+msgstr ""
+
+#: src/otidalrouteUIDialog.h:192
+msgid "Start"
+msgstr ""
+
+#: src/otidalrouteUIDialog.h:192
+msgid "Start Time"
+msgstr ""
+
+#: src/otidalrouteUIDialog.h:193
+msgid "End"
+msgstr ""
+
+#: src/otidalrouteUIDialog.h:193
+msgid "End Time"
+msgstr ""
+
+#: src/otidalrouteUIDialog.h:193
+msgid "Time"
+msgstr ""
+
+#: src/otidalrouteUIDialog.h:193 src/routeprop.cpp:552 src/routeprop.cpp:754
+#: src/tableroutes.cpp:191 src/tableroutes.cpp:264
+msgid "Distance"
+msgstr ""
+
+#: src/routeprop.cpp:96
+msgid "MoTwilight"
+msgstr ""
+
+#: src/routeprop.cpp:98
+msgid "Sunrise"
+msgstr ""
+
+#: src/routeprop.cpp:100
+msgid "Daytime"
+msgstr ""
+
+#: src/routeprop.cpp:102
+msgid "Sunset"
+msgstr ""
+
+#: src/routeprop.cpp:104
+msgid "EvTwilight"
+msgstr ""
+
+#: src/routeprop.cpp:106
+msgid "Nighttime"
+msgstr ""
+
+#: src/routeprop.cpp:387 src/routeprop.cpp:601
+msgid "Name"
+msgstr ""
+
+#: src/routeprop.cpp:397 src/routeprop.cpp:614
+msgid "Depart From"
+msgstr ""
+
+#: src/routeprop.cpp:407 src/routeprop.cpp:619
+msgid "Destination"
+msgstr ""
+
+#: src/routeprop.cpp:426 src/routeprop.cpp:638
+msgid "Total Distance"
+msgstr ""
+
+#: src/routeprop.cpp:439 src/routeprop.cpp:643
+msgid "Plan Speed"
+msgstr ""
+
+#: src/routeprop.cpp:453 src/routeprop.cpp:649
+msgid "Time Enroute"
+msgstr ""
+
+#: src/routeprop.cpp:465
+msgid "Departure Time"
+msgstr ""
+
+#: src/routeprop.cpp:476 src/routeprop.cpp:483 src/routeprop.cpp:681
+#: src/routeprop.cpp:690
+msgid "UTC"
+msgstr ""
+
+#: src/routeprop.cpp:476 src/routeprop.cpp:486 src/routeprop.cpp:681
+#: src/routeprop.cpp:693
+msgid "Local @ PC"
+msgstr ""
+
+#: src/routeprop.cpp:476 src/routeprop.cpp:489 src/routeprop.cpp:681
+#: src/routeprop.cpp:696
+msgid "LMT @ Location"
+msgstr ""
+
+#: src/routeprop.cpp:478 src/routeprop.cpp:685
+msgid "Times shown as"
+msgstr ""
+
+#: src/routeprop.cpp:496
+msgid "Route Calculation Type:"
+msgstr ""
+
+#: src/routeprop.cpp:508 src/routeprop.cpp:711
+msgid "Waypoints"
+msgstr ""
+
+#: src/routeprop.cpp:537 src/routeprop.cpp:738 src/tableroutes.cpp:169
+#: src/tableroutes.cpp:241
+msgid "OK"
+msgstr ""
+
+#: src/routeprop.cpp:550 src/routeprop.cpp:752
+msgid "Leg"
+msgstr ""
+
+#: src/routeprop.cpp:551 src/routeprop.cpp:753
+msgid "To Waypoint"
+msgstr ""
+
+#: src/routeprop.cpp:555 src/routeprop.cpp:757
+msgid "Bearing"
+msgstr ""
+
+#: src/routeprop.cpp:557 src/routeprop.cpp:759
+msgid "Latitude"
+msgstr ""
+
+#: src/routeprop.cpp:558 src/routeprop.cpp:760
+msgid "Longitude"
+msgstr ""
+
+#: src/routeprop.cpp:560 src/routeprop.cpp:762
+msgid "Speed"
+msgstr ""
+
+#: src/routeprop.cpp:561
+msgid "Course to steer"
+msgstr ""
+
+#: src/routeprop.cpp:562 src/routeprop.cpp:764
+msgid "Tidal Set"
+msgstr ""
+
+#: src/routeprop.cpp:563 src/routeprop.cpp:765
+msgid "Tidal Rate"
+msgstr ""
+
+#: src/routeprop.cpp:596
+msgid "Properties"
+msgstr ""
+
+#: src/routeprop.cpp:655
+msgid "Departure Time (Y/m/d h:m)"
+msgstr ""
+
+#: src/routeprop.cpp:699
+msgid "RouteCalculation Type:"
+msgstr ""
+
+#: src/routeprop.cpp:763
+msgid "CTS"
+msgstr ""
+
+#: src/routeprop.h:63 src/tableroutes.h:63
+msgid "Route Properties"
+msgstr ""
+
+#: src/routeprop.h:107 src/tableroutes.h:107
+msgid "Waypoint Properties"
+msgstr ""
+
+#: src/tableroutes.cpp:182 src/tableroutes.cpp:255
+msgid "RouteName"
+msgstr ""
+
+#: src/tableroutes.cpp:183 src/tableroutes.cpp:256
+msgid "From"
+msgstr ""
+
+#: src/tableroutes.cpp:184 src/tableroutes.cpp:257
+msgid "Towards"
+msgstr ""
+
+#: src/tableroutes.cpp:187 src/tableroutes.cpp:260
+msgid "StartTime"
+msgstr ""
+
+#: src/tableroutes.cpp:189 src/tableroutes.cpp:262
+msgid "EndTime"
+msgstr ""
+
+#: src/tableroutes.cpp:190 src/tableroutes.cpp:263
+msgid "Duration"
+msgstr ""
+
+#: src/tableroutes.cpp:192 src/tableroutes.cpp:265
+msgid "Type"
+msgstr ""
