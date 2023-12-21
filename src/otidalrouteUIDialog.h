@@ -29,9 +29,9 @@
 
 #include "wx/wxprec.h"
 
-#ifndef  WX_PRECOMP
+#ifndef WX_PRECOMP
 #include "wx/wx.h"
-#endif //precompiled headers
+#endif  // precompiled headers
 
 #include <wx/fileconf.h>
 #include <wx/glcanvas.h>
@@ -63,41 +63,39 @@
 #include "tableroutes.h"
 
 /* XPM */
-static const char *eye[] = {
-	"20 20 7 1",
-	". c none",
-	"# c #000000",
-	"a c #333333",
-	"b c #666666",
-	"c c #999999",
-	"d c #cccccc",
-	"e c #ffffff",
-	"....................",
-	"....................",
-	"....................",
-	"....................",
-	".......######.......",
-	".....#aabccb#a#.....",
-	"....#deeeddeebcb#...",
-	"..#aeeeec##aceaec#..",
-	".#bedaeee####dbcec#.",
-	"#aeedbdabc###bcceea#",
-	".#bedad######abcec#.",
-	"..#be#d######dadb#..",
-	"...#abac####abba#...",
-	".....##acbaca##.....",
-	".......######.......",
-	"....................",
-	"....................",
-	"....................",
-	"....................",
-	"...................." };
-
+static const char* eye[] = {"20 20 7 1",
+                            ". c none",
+                            "# c #000000",
+                            "a c #333333",
+                            "b c #666666",
+                            "c c #999999",
+                            "d c #cccccc",
+                            "e c #ffffff",
+                            "....................",
+                            "....................",
+                            "....................",
+                            "....................",
+                            ".......######.......",
+                            ".....#aabccb#a#.....",
+                            "....#deeeddeebcb#...",
+                            "..#aeeeec##aceaec#..",
+                            ".#bedaeee####dbcec#.",
+                            "#aeedbdabc###bcceea#",
+                            ".#bedad######abcec#.",
+                            "..#be#d######dadb#..",
+                            "...#abac####abba#...",
+                            ".....##acbaca##.....",
+                            ".......######.......",
+                            "....................",
+                            "....................",
+                            "....................",
+                            "....................",
+                            "...................."};
 
 using namespace std;
 
 #ifndef PI
-#define PI        3.1415926535897931160E0      /* pi */
+#define PI 3.1415926535897931160E0 /* pi */
 #endif
 
 #if !defined(NAN)
@@ -105,19 +103,21 @@ static const long long lNaN = 0xfff8000000000000;
 #define NAN (*(double*)&lNaN)
 #endif
 
-#define RT_RCDATA2           MAKEINTRESOURCE(999)
+#define RT_RCDATA2 MAKEINTRESOURCE(999)
 
 /* Maximum value that can be returned by the rand function. */
 #ifndef RAND_MAX
 #define RAND_MAX 0x7fff
 #endif
 
-#define distance(X, Y) sqrt((X)*(X) + (Y)*(Y)) // much faster than hypot#define distance(X, Y) sqrt((X)*(X) + (Y)*(Y)) // much faster than hypot
+#define distance(X, Y) \
+  sqrt((X) * (X) +     \
+       (Y) * (Y))  // much faster than hypot#define distance(X, Y) sqrt((X)*(X)
+                   // + (Y)*(Y)) // much faster than hypot
 
 class otidalrouteOverlayFactory;
 class PlugIn_ViewPort;
 class PositionRecordSet;
-
 
 class wxFileConfig;
 class otidalroute_pi;
@@ -127,255 +127,276 @@ class TableRoutes;
 class ConfigurationDialog;
 class NewPositionDialog;
 
-class Position
-{
+class Position {
 public:
-    wxString lat, lon, wpt_num;
-	wxString name;
-	wxString guid;
-	wxString time;
-	wxString etd;
-	wxString CTS;
-	wxString SMG;
-	wxString distTo;
-	wxString brgTo;
-	wxString set;
-	wxString rate;
-	wxString icon_name;
-	bool show_name;
-	int routepoint;
-
+  wxString lat, lon, wpt_num;
+  wxString name;
+  wxString guid;
+  wxString time;
+  wxString etd;
+  wxString CTS;
+  wxString SMG;
+  wxString distTo;
+  wxString brgTo;
+  wxString set;
+  wxString rate;
+  wxString icon_name;
+  bool show_name;
+  int routepoint;
 };
 
 struct RouteMapPosition {
-	RouteMapPosition(wxString n, double lat0, double lon0)
-		: Name(n), lat(lat0), lon(lon0) {}
+  RouteMapPosition(wxString n, double lat0, double lon0)
+      : Name(n), lat(lat0), lon(lon0) {}
+
 public:
-	wxString Name;
-	double lat, lon;
+  wxString Name;
+  double lat, lon;
 };
 
-
-struct Arrow
-{
-	wxDateTime m_dt;
-	double m_dir;
-	double m_force;
-	double m_lat;
-	double m_lon;
-	double m_cts;
-	double m_tforce;
-
+struct Arrow {
+  wxDateTime m_dt;
+  double m_dir;
+  double m_force;
+  double m_lat;
+  double m_lon;
+  double m_cts;
+  double m_tforce;
 };
 
-struct TotalTideArrow
-{
-	double m_dir;
-	double m_force;
+struct TotalTideArrow {
+  double m_dir;
+  double m_force;
 };
 
-class TidalRoute
-{
+class TidalRoute {
 public:
-	
-	wxString Name, Type, Start, StartTime, End, EndTime, Time, Distance, m_GUID//,
-		//AvgSpeed, MaxSpeed, AvgSpeedGround, MaxSpeedGround, AvgWind, MaxWind,
-		//AvgCurrent, MaxCurrent, AvgSwell, MaxSwell, UpwindPercentage, PortStarboard,
-		//Tacks, State
-		;
-	list<Position> m_positionslist;
-	
+  wxString Name, Type, Start, StartTime, End, EndTime, Time, Distance,
+      m_GUID  //,
+              // AvgSpeed, MaxSpeed, AvgSpeedGround, MaxSpeedGround, AvgWind,
+              // MaxWind, AvgCurrent, MaxCurrent, AvgSwell, MaxSwell,
+              // UpwindPercentage, PortStarboard, Tacks, State
+      ;
+  list<Position> m_positionslist;
 };
 
-static const wxString column_names[] = { _T(""), _("Start"), _("Start Time"),
-_("End"), _("End Time"), _("Time"), _("Distance")//,
-//_("Avg Speed"), _("Max Speed")//,
-//_("Avg Speed Ground"), _("Max Speed Ground"),
-//_("Avg Wind"), _("Max Wind"),
-//_("Avg Current"), _("Max Current"),
-//_("Avg Swell"), _("Max Swell"),
-//_("Upwind Percentage"),
-//_("Port Starboard"), _("Tacks"), _("State") 
+static const wxString column_names[] = {
+    _T(""),        _("Start"), _("Start Time"), _("End"),
+    _("End Time"), _("Time"),  _("Distance")  //,
+    //_("Avg Speed"), _("Max Speed")//,
+    //_("Avg Speed Ground"), _("Max Speed Ground"),
+    //_("Avg Wind"), _("Max Wind"),
+    //_("Avg Current"), _("Max Current"),
+    //_("Avg Swell"), _("Max Swell"),
+    //_("Upwind Percentage"),
+    //_("Port Starboard"), _("Tacks"), _("State")
 };
 
-struct RouteMapConfiguration
-{
-	RouteMapConfiguration() : StartLon(0), EndLon(0), grib_is_data_deficient(false) {} /* avoid waiting forever in update longitudes */
+struct RouteMapConfiguration {
+  RouteMapConfiguration()
+      : StartLon(0),
+        EndLon(0),
+        grib_is_data_deficient(false) {
+  } /* avoid waiting forever in update longitudes */
 
-	wxString Start, End;
-	wxDateTime StartTime;
+  wxString Start, End;
+  wxDateTime StartTime;
 
-	double dt; /* time in seconds between propagations */
+  double dt; /* time in seconds between propagations */
 
-	double MaxDivertedCourse, MaxCourseAngle, MaxSearchAngle, MaxTrueWindKnots, MaxApparentWindKnots;
-	double MaxSwellMeters, MaxLatitude, TackingTime, WindVSCurrent;
+  double MaxDivertedCourse, MaxCourseAngle, MaxSearchAngle, MaxTrueWindKnots,
+      MaxApparentWindKnots;
+  double MaxSwellMeters, MaxLatitude, TackingTime, WindVSCurrent;
 
-	bool AvoidCycloneTracks;
-	int CycloneMonths, CycloneDays;
+  bool AvoidCycloneTracks;
+  int CycloneMonths, CycloneDays;
 
-	bool UseGrib;
-	bool AllowDataDeficient;
-	double WindStrength; // wind speed multiplier
+  bool UseGrib;
+  bool AllowDataDeficient;
+  double WindStrength;  // wind speed multiplier
 
-	bool DetectLand, DetectBoundary, Currents, InvertedRegions, Anchoring;
+  bool DetectLand, DetectBoundary, Currents, InvertedRegions, Anchoring;
 
-	double FromDegree, ToDegree, ByDegrees;
+  double FromDegree, ToDegree, ByDegrees;
 
-	/* computed values */
-	std::list<double> DegreeSteps;
-	double StartLat, StartLon, EndLat, EndLon;
+  /* computed values */
+  std::list<double> DegreeSteps;
+  double StartLat, StartLon, EndLat, EndLon;
 
-	double StartEndBearing; /* calculated from start and end */
-	bool positive_longitudes; /* longitudes are either 0 to 360 or -180 to 180,
-							  this means the map cannot cross both 0 and 180 longitude.
-							  To fully support this requires a lot more logic and would probably slow the algorithm
-							  by about 8%.  Is it even useful?  */
+  double StartEndBearing;   /* calculated from start and end */
+  bool positive_longitudes; /* longitudes are either 0 to 360 or -180 to 180,
+                                                    this means the map cannot
+                               cross both 0 and 180 longitude. To fully support
+                               this requires a lot more logic and would probably
+                               slow the algorithm by about 8%.  Is it even
+                               useful?  */
 
-	// parameters
-	GribRecordSet *grib;
-	wxDateTime time;
-	bool grib_is_data_deficient, polar_failed, wind_data_failed;	
+  // parameters
+  GribRecordSet* grib;
+  wxDateTime time;
+  bool grib_is_data_deficient, polar_failed, wind_data_failed;
 };
 
-
-
-class otidalrouteUIDialog: public otidalrouteUIDialogBase {
+class otidalrouteUIDialog : public otidalrouteUIDialogBase {
 public:
+  otidalrouteUIDialog(wxWindow* parent, otidalroute_pi* ppi);
+  ~otidalrouteUIDialog();
 
-    otidalrouteUIDialog(wxWindow *parent, otidalroute_pi *ppi);
-    ~otidalrouteUIDialog();
+  enum { POSITION_NAME = 0, POSITION_LAT, POSITION_LON };
 
-	enum { POSITION_NAME = 0, POSITION_LAT, POSITION_LON };
+  enum {
+    VISIBLE = 0,
+    START,
+    STARTTIME,
+    END,
+    ENDTIME,
+    TIME,
+    DISTANCE,
+    NUM_COLS
 
-	enum {
-		VISIBLE = 0, START, STARTTIME, END, ENDTIME, TIME, DISTANCE, NUM_COLS
-		
-		//AVGSPEED, MAXSPEED,
-		//AVGSPEEDGROUND, MAXSPEEDGROUND,
-		//AVGWIND, MAXWIND, AVGCURRENT, MAXCURRENT, AVGSWELL, MAXSWELL,
-		//UPWIND_PERCENTAGE, PORT_STARBOARD, TACKS, NUM_COLS
-	};
+    // AVGSPEED, MAXSPEED,
+    // AVGSPEEDGROUND, MAXSPEEDGROUND,
+    // AVGWIND, MAXWIND, AVGCURRENT, MAXCURRENT, AVGSWELL, MAXSWELL,
+    // UPWIND_PERCENTAGE, PORT_STARBOARD, TACKS, NUM_COLS
+  };
 
-	long columns[NUM_COLS];
+  long columns[NUM_COLS];
 
-	void OpenFile( bool newestFile = false );
-    
-    void SetCursorLatLon( double lat, double lon );
+  void OpenFile(bool newestFile = false);
 
-    void SetViewPort( PlugIn_ViewPort *vp );
-	PlugIn_ViewPort *vp;
+  void SetCursorLatLon(double lat, double lon);
 
-	//int round(double c);
+  void SetViewPort(PlugIn_ViewPort* vp);
+  PlugIn_ViewPort* vp;
 
-	bool m_bUseRate;    
-	bool m_bUseDirection; 
-	bool m_bUseFillColour;
+  // int round(double c);
 
-	wxString myUseColour[5];
+  bool m_bUseRate;
+  bool m_bUseDirection;
+  bool m_bUseFillColour;
 
-	wxDateTime m_dtNow;
-	double m_dInterval;
+  wxString myUseColour[5];
 
-	bool onNext;
-	bool onPrev;
+  wxDateTime m_dtNow;
+  double m_dInterval;
 
-    wxString m_FolderSelected;
-	int m_IntervalSelected;
-	
-	time_t myCurrentTime; 
+  bool onNext;
+  bool onPrev;
 
-	wxString MakeDateTimeLabel(wxDateTime myDateTime);
-	void OnInformation(wxCommandEvent& event);
-	void OnAbout(wxCommandEvent& event);
-	void OnShowRouteTable();
-	void GetTable(wxString myRoute);
-	void AddChartRoute(wxString myRoute);
-	void AddTidalRoute(TidalRoute tr);
+  wxString m_FolderSelected;
+  int m_IntervalSelected;
 
-	void RequestGrib(wxDateTime time);
-	virtual void Lock() { routemutex.Lock(); }
-	virtual void Unlock() { routemutex.Unlock(); }
-	void OverGround(double B, double VB, double C, double VC, double &BG, double &VBG);
-	bool OpenXML(wxString filename, bool reportfailure);
-	void SaveXML(wxString filename);
+  time_t myCurrentTime;
 
-	double AttributeDouble(TiXmlElement *e, const char *name, double def);
-	vector<RouteMapPosition>Positions;
-	wxString m_default_configuration_path;
-	list<Arrow> m_arrowList;
-	list<Arrow> m_cList;
-	list<TotalTideArrow> m_totaltideList;
-	list<TidalRoute> m_TidalRoutes;
-	bool b_showTidalArrow;
-	RouteProp* routetable;
-	wxDateTime m_GribTimelineTime;
-	ConfigurationDialog m_ConfigurationDialog;
+  wxString MakeDateTimeLabel(wxDateTime myDateTime);
+  void OnInformation(wxCommandEvent& event);
+  void OnAbout(wxCommandEvent& event);
+  void OnShowRouteTable();
+  void GetTable(wxString myRoute);
+  void AddChartRoute(wxString myRoute);
+  void AddTidalRoute(TidalRoute tr);
 
-	vector<Position> my_positions;
-	vector<Position> my_points;
+  void RequestGrib(wxDateTime time);
+  virtual void Lock() { routemutex.Lock(); }
+  virtual void Unlock() { routemutex.Unlock(); }
+  void OverGround(double B, double VB, double C, double VC, double& BG,
+                  double& VBG);
+  bool OpenXML(wxString filename, bool reportfailure);
+  void SaveXML(wxString filename);
 
-	wxString rte_start;
-	wxString rte_end;
-	
-	bool OpenXML(bool gotGPXFile);
-	bool gotMyGPXFile;
-	wxString rawGPXFile;
-	void Addpoint(TiXmlElement* Route, wxString ptlat, wxString ptlon, wxString ptname, wxString ptsym, wxString pttype);
+  double AttributeDouble(TiXmlElement* e, const char* name, double def);
+  vector<RouteMapPosition> Positions;
+  wxString m_default_configuration_path;
+  list<Arrow> m_arrowList;
+  list<Arrow> m_cList;
+  list<TotalTideArrow> m_totaltideList;
+  list<TidalRoute> m_TidalRoutes;
+  bool b_showTidalArrow;
+  RouteProp* routetable;
+  wxDateTime m_GribTimelineTime;
+  ConfigurationDialog m_ConfigurationDialog;
+
+  vector<Position> my_positions;
+  vector<Position> my_points;
+
+  wxString rte_start;
+  wxString rte_end;
+
+  bool OpenXML(bool gotGPXFile);
+  bool gotMyGPXFile;
+  wxString rawGPXFile;
+  void Addpoint(TiXmlElement* Route, wxString ptlat, wxString ptlon,
+                wxString ptname, wxString ptsym, wxString pttype);
 
 protected:
-	bool m_bNeedsGrib;
-
+  bool m_bNeedsGrib;
 
 private:
-	wxMutex routemutex;
+  wxMutex routemutex;
 
-    void OnClose( wxCloseEvent& event );
-    void OnMove( wxMoveEvent& event );
-    void OnSize( wxSizeEvent& event );
+  void OnClose(wxCloseEvent& event);
+  void OnMove(wxMoveEvent& event);
+  void OnSize(wxSizeEvent& event);
 
-	void OnSummary(wxCommandEvent& event);
-	void OnShowTables(wxCommandEvent& event);
-	
-	void OnDeleteAllRoutes(wxCommandEvent& event);
-	void CalcDR(wxCommandEvent& event, bool write_file, int Pattern);
-	void CalcETA(wxCommandEvent& event, bool write_file, int Pattern);
-	
-	void DRCalculate(wxCommandEvent& event);
-	void ETACalculate(wxCommandEvent& event);
+  void OnSummary(wxCommandEvent& event);
+  void OnShowTables(wxCommandEvent& event);
 
-	bool GetGribSpdDir(wxDateTime dt, double lat, double lon, double &spd, double &dir);
+  void OnDeleteAllRoutes(wxCommandEvent& event);
+  void CalcDR(wxCommandEvent& event, bool write_file, int Pattern);
+  void CalcETA(wxCommandEvent& event, bool write_file, int Pattern);
 
-	int GetRandomNumber(int range_min, int range_max);
-	
+  void DRCalculate(wxCommandEvent& event);
+  void ETACalculate(wxCommandEvent& event);
 
-    //    Data
-    wxWindow *pParent;
-	otidalroute_pi *pPlugIn;
+  bool GetGribSpdDir(wxDateTime dt, double lat, double lon, double& spd,
+                     double& dir);
 
-    PlugIn_ViewPort  *m_vp;
- 
-    double m_cursor_lat, m_cursor_lon;
-	wxString         g_SData_Locn;
-	TCMgr           *ptcmgr;
-	wxString        *pTC_Dir;
+  int GetRandomNumber(int range_min, int range_max);
 
-	int         m_corr_mins;
-    wxString    m_stz;
-    int         m_t_graphday_00_at_station;
-    wxDateTime  m_graphday;
-    int         m_plot_y_offset;
+  //    Data
+  wxWindow* pParent;
+  otidalroute_pi* pPlugIn;
 
-	bool isNowButton;
-	wxTimeSpan  myTimeOfDay;
-	bool btc_valid;
+  PlugIn_ViewPort* m_vp;
 
-	bool error_found;
-	bool dbg;
-	wxString     m_gpx_path;
+  double m_cursor_lat, m_cursor_lon;
+  wxString g_SData_Locn;
+  TCMgr* ptcmgr;
+  wxString* pTC_Dir;
 
-	wxString waypointName[200];
+  int m_corr_mins;
+  wxString m_stz;
+  int m_t_graphday_00_at_station;
+  wxDateTime m_graphday;
+  int m_plot_y_offset;
 
+  bool isNowButton;
+  wxTimeSpan myTimeOfDay;
+  bool btc_valid;
+
+  bool error_found;
+  bool dbg;
+  wxString m_gpx_path;
+
+  wxString waypointName[200];
+  Plugin_WaypointExList* myList;
+  bool m_bUsingFollow;
+  unique_ptr<PlugIn_Route_Ex> thisRoute;
+  vector<PlugIn_Waypoint_Ex*> theWaypoints;
+  int countRoutePoints;
+  int nextRoutePointIndex;
+};
+
+class GetRouteDialog : public wxDialog {
+public:
+  GetRouteDialog(wxWindow* parent, wxWindowID id, const wxString& title,
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxDefaultSize,
+                 long style = wxDEFAULT_DIALOG_STYLE);
+
+  wxListView* dialogText;
+
+private:
 };
 
 #endif
-

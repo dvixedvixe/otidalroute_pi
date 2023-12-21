@@ -43,164 +43,156 @@ class ConfigurationDialog;
 class otidalroute_pi;
 ///////////////////////////////////////////////////////////////////////////
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /// Class oTidalRoute
 ///////////////////////////////////////////////////////////////////////////////
-class otidalrouteUIDialogBase : public wxFrame
-{
+class otidalrouteUIDialogBase : public wxFrame {
 private:
-
 protected:
-	
-	
-	wxPanel* m_panel2;
-	wxButton* m_bCalcDR;
-	wxButton* m_bCalcETA;
-	wxTextCtrl* m_tSpeed;
-	wxMenuBar* m_menubar3;
-	wxMenu* m_menu2;
-	wxMenu* m_menu3;
-	wxMenu* m_menu4;
-	wxMenu* m_mHelp;
-	wxStaticText* m_staticText2;
-	
-	wxStaticText* m_staticText3;
-	wxStaticText* m_staticText4;
-	
+  wxPanel* m_panel2;
+  wxButton* m_bCalcDR;
+  wxButton* m_bCalcETA;
+  wxTextCtrl* m_tSpeed;
+  wxMenuBar* m_menubar3;
+  wxMenu* m_menu2;
+  wxMenu* m_menu3;
+  wxMenu* m_menu4;
+  wxMenu* m_mHelp;
+  wxStaticText* m_staticText2;
 
-	// Virtual event handlers, overide them in your derived class
-	virtual void OnClose(wxCloseEvent& event) { event.Skip(); }
-	virtual void OnSize(wxSizeEvent& event) { event.Skip(); }
-	virtual void DRCalculate(wxCommandEvent& event) { event.Skip(); }
-	virtual void ETACalculate(wxCommandEvent& event) { event.Skip(); }
-	virtual void OnSummary(wxCommandEvent& event) { event.Skip(); }
-	virtual void OnShowTables(wxCommandEvent& event) { event.Skip(); }
-	virtual void OnDeleteAllRoutes(wxCommandEvent& event) { event.Skip(); }
-	virtual void OnInformation(wxCommandEvent& event) { event.Skip(); }
-	virtual void OnAbout(wxCommandEvent& event) { event.Skip(); }
+  wxStaticText* m_staticText3;
+  wxStaticText* m_staticText4;
+
+  // Virtual event handlers, overide them in your derived class
+  virtual void OnClose(wxCloseEvent& event) { event.Skip(); }
+  virtual void OnSize(wxSizeEvent& event) { event.Skip(); }
+  virtual void DRCalculate(wxCommandEvent& event) { event.Skip(); }
+  virtual void ETACalculate(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnSummary(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnShowTables(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnDeleteAllRoutes(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnInformation(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnAbout(wxCommandEvent& event) { event.Skip(); }
 
 public:
-	wxTextCtrl* m_textCtrl1;
-	wxTextCtrl* m_textCtrl3;
-	wxTextCtrl* m_textCtrl4;
+  wxTextCtrl* m_textCtrl1;
+  wxTextCtrl* m_textCtrl3;
+  wxTextCtrl* m_textCtrl4;
 
-	wxTextCtrl* m_tRouteName;
-	wxCheckBox* m_cbGPX;
-	wxChoice* m_choiceDepartureTimes;
+  wxTextCtrl* m_tRouteName;
+  wxCheckBox* m_cbGPX;
+  wxCheckBox* m_cbArrow;
+  wxChoice* m_choiceDepartureTimes;
 
-	otidalrouteUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(500, 364), long style = wxCAPTION | wxCLOSE_BOX | wxFRAME_FLOAT_ON_PARENT | wxSYSTEM_MENU | wxTAB_TRAVERSAL | wxRESIZE_BORDER);
+  otidalrouteUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
+                          const wxString& title = wxEmptyString,
+                          const wxPoint& pos = wxDefaultPosition,
+                          const wxSize& size = wxSize(500, 364),
+                          long style = wxCAPTION | wxCLOSE_BOX |
+                                       wxFRAME_FLOAT_ON_PARENT | wxSYSTEM_MENU |
+                                       wxTAB_TRAVERSAL | wxRESIZE_BORDER);
 
-	~otidalrouteUIDialogBase();
-
+  ~otidalrouteUIDialogBase();
 };
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class otidalroutePreferencesDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class otidalroutePreferencesDialogBase : public wxDialog
-{
+class otidalroutePreferencesDialogBase : public wxDialog {
 private:
-
 protected:
-
-	// Virtual event handlers, overide them in your derived class
+  // Virtual event handlers, overide them in your derived class
 
 public:
+  wxCheckBox* m_cbUseRate;
+  wxCheckBox* m_cbUseDirection;
+  wxCheckBox* m_cbFillColour;
 
+  wxStaticText* m_staticText4;
+  wxStaticText* m_staticText41;
+  wxStaticText* m_staticText42;
+  wxStaticText* m_staticText43;
+  wxStaticText* m_staticText44;
 
-	wxCheckBox* m_cbUseRate;
-	wxCheckBox* m_cbUseDirection;
-	wxCheckBox* m_cbFillColour;
+  wxButton* m_button111;
+  wxButton* m_button2;
+  wxButton* m_button3;
+  wxButton* m_button4;
+  wxButton* m_button5;
 
-	wxStaticText* m_staticText4;
-	wxStaticText* m_staticText41;
-	wxStaticText* m_staticText42;
-	wxStaticText* m_staticText43;
-	wxStaticText* m_staticText44;
+  wxColourPickerCtrl* myColourPicker0;
+  wxColourPickerCtrl* myColourPicker1;
+  wxColourPickerCtrl* myColourPicker2;
+  wxColourPickerCtrl* myColourPicker3;
+  wxColourPickerCtrl* myColourPicker4;
 
+  wxCheckBox* m_cbCopyFirstCumulativeRecord;
+  wxCheckBox* m_cbCopyMissingWaveRecord;
+  wxRadioBox* m_rbLoadOptions;
+  wxRadioBox* m_rbStartOptions;
+  wxRadioBox* m_rbTimeFormat;
 
-	wxButton* m_button111;
-	wxButton* m_button2;
-	wxButton* m_button3;
-	wxButton* m_button4;
-	wxButton* m_button5;
-
-	wxColourPickerCtrl* myColourPicker0;
-	wxColourPickerCtrl* myColourPicker1;
-	wxColourPickerCtrl* myColourPicker2;
-	wxColourPickerCtrl* myColourPicker3;
-	wxColourPickerCtrl* myColourPicker4;
-
-	wxCheckBox* m_cbCopyFirstCumulativeRecord;
-	wxCheckBox* m_cbCopyMissingWaveRecord;
-	wxRadioBox* m_rbLoadOptions;
-	wxRadioBox* m_rbStartOptions;
-	wxRadioBox* m_rbTimeFormat;
-
-	otidalroutePreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE);
-	~otidalroutePreferencesDialogBase();
-
+  otidalroutePreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
+                                   const wxString& title = _("Preferences"),
+                                   const wxPoint& pos = wxDefaultPosition,
+                                   const wxSize& size = wxDefaultSize,
+                                   long style = wxDEFAULT_DIALOG_STYLE);
+  ~otidalroutePreferencesDialogBase();
 };
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class ConfigurationDialog
 ///////////////////////////////////////////////////////////////////////////////
-class ConfigurationDialog : public wxDialog
-{
+class ConfigurationDialog : public wxDialog {
 private:
-	
-	
-
 protected:
+  wxButton* m_bDelete;
+  wxButton* m_bSelect;
+  wxButton* m_bGenerate;
 
-	wxButton* m_bDelete;
-	wxButton* m_bSelect;
-	wxButton* m_bGenerate;
-	wxButton* m_bClose;
+  wxButton* m_bClose;
 
-	// Virtual event handlers, overide them in your derived class
-	void OnDelete(wxCommandEvent& event);
-	void OnInformation(wxCommandEvent& event);
-	void OnGenerate(wxCommandEvent& event);
-	void OnClose(wxCommandEvent& event);
+  // Virtual event handlers, overide them in your derived class
+  void OnDelete(wxCommandEvent& event);
+  void OnInformation(wxCommandEvent& event);
+  void OnGenerate(wxCommandEvent& event);
+  void OnClose(wxCommandEvent& event);
 
 public:
-	otidalroute_pi *pPlugIn;
-	wxListBox* m_lRoutes;
+  otidalroute_pi* pPlugIn;
+  wxListBox* m_lRoutes;
 
-	ConfigurationDialog(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Tidal Routes"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE);
-	~ConfigurationDialog();
-
+  ConfigurationDialog(wxWindow* parent, wxWindowID id = wxID_ANY,
+                      const wxString& title = _("Tidal Routes"),
+                      const wxPoint& pos = wxDefaultPosition,
+                      const wxSize& size = wxDefaultSize,
+                      long style = wxDEFAULT_DIALOG_STYLE);
+  ~ConfigurationDialog();
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class AboutDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class AboutDialogBase : public wxDialog
-{
+class AboutDialogBase : public wxDialog {
 private:
-
 protected:
-	wxStaticText* m_staticText135;
-	wxStaticText* m_stVersion;
-	wxStaticText* m_staticText110;
-	wxButton* m_bAboutAuthor;
-	wxButton* m_bClose;
+  wxStaticText* m_staticText135;
+  wxStaticText* m_stVersion;
+  wxStaticText* m_staticText110;
+  wxButton* m_bAboutAuthor;
+  wxButton* m_bClose;
 
-	// Virtual event handlers, overide them in your derived class
-	virtual void OnAboutAuthor(wxCommandEvent& event) { event.Skip(); }
-	virtual void OnClose(wxCommandEvent& event) { event.Skip(); }
-
+  // Virtual event handlers, overide them in your derived class
+  virtual void OnAboutAuthor(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnClose(wxCommandEvent& event) { event.Skip(); }
 
 public:
-
-	AboutDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("About Weather Routing"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE);
-	~AboutDialogBase();
-
+  AboutDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
+                  const wxString& title = _("About Weather Routing"),
+                  const wxPoint& pos = wxDefaultPosition,
+                  const wxSize& size = wxDefaultSize,
+                  long style = wxDEFAULT_DIALOG_STYLE);
+  ~AboutDialogBase();
 };
 
-
-#endif //__otidalrouteUIDIALOGBASE_H__
+#endif  //__otidalrouteUIDIALOGBASE_H__
