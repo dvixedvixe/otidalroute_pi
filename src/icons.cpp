@@ -3,11 +3,18 @@
 #ifndef WX_PRECOMP
 #	include <wx/wx.h>
 #endif
+#include <wx/filename.h>
 #include <wx/mstream.h>
 #include "icons.h"
 
 wxBitmap *_img_otidalroute;
 wxBitmap *_img_otidalroute_pi;
+
+#ifdef ocpnUSE_SVG
+#include "ocpn_plugin.h"
+wxString _svg_otidalroute;
+wxString _svg_otidalroute_toggled;
+#endif
 
 void initialize_images(void)
 {
@@ -19,5 +26,22 @@ void initialize_images(void)
 		wxMemoryInputStream sm("\211PNG\r\n\032\n\000\000\000\rIHDR\000\000\000 \000\000\000 \b\006\000\000\000szz\364\000\000\000\011pHYs\000\000\016\304\000\000\016\304\001\225+\016\033\000\000\000\342IDATX\303\335\227K\n\3030\014D\233\241\373\356u\203\334\3770\275\201\3669A\273i\300\264\376h,E\206\032\002qL4\317\312\310v6U}\335\0266\264\006\016\221u\000\2478\013q\210\320\357`4sk\300\331\214\301\022d\024\334\363\271\340\025\361z\005\2364G\030\025\354\013\263\006\355\002<T\247 B\313\220\205\270d\035X\001\361\343\201l\210\252\0113!\232U\220\005\321-C\006b\377\\\241\000\326r\333\033\367)\333qMP\210u\002\321\342,\004\"\305\237\023\020\210\026g!p\305\314\365\253zz\020\033s(\255\005:\305\312\261\332\263\032\030\265\035[\305\313\276%\023\360\212\217\332\b\002\021\342l\277\214\331\365\200g\346\226x\252\332\006\220\225?&Y\342S\207\322\350v\2678\367\2573\260\034\340\r\316\013m\025\034\200~v\000\000\000\000IEND\256B`\202", 304);
 		_img_otidalroute_pi = new wxBitmap(wxImage(sm));
 	}
+
+#ifdef ocpnUSE_SVG
+        wxFileName fn;
+        wxString tmp_path;
+
+        tmp_path = GetPluginDataDir("otidalroute_pi");
+        fn.SetPath(tmp_path);
+        fn.AppendDir("data");
+
+        fn.SetFullName("otidalroute_pi.svg");
+        _svg_otidalroute = fn.GetFullPath();
+        fn.SetFullName("otidalroute_pi_toggled.svg");
+        _svg_otidalroute_toggled = fn.GetFullPath();
+
+#endif  // ocpnUSE_SVG
+
+
 	return;
 }

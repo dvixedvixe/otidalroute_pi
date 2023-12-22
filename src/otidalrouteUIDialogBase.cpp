@@ -69,11 +69,6 @@ otidalrouteUIDialogBase::otidalrouteUIDialogBase(wxWindow* parent,
                            wxDefaultSize, 0);
   sbSizer91->Add(m_cbGPX, 0, wxALL, 5);
 
-  m_cbArrow = new wxCheckBox(sbSizer91->GetStaticBox(), wxID_ANY,
-                           wxT("Show Tidal Data"), wxDefaultPosition,
-                           wxDefaultSize, 0);
-  sbSizer91->Add(m_cbArrow, 0, wxALL, 5);
-
   m_staticText2 = new wxStaticText(sbSizer91->GetStaticBox(), wxID_ANY,
                                    wxT("Departure Times"), wxDefaultPosition,
                                    wxDefaultSize, 0);
@@ -362,6 +357,10 @@ ConfigurationDialog::ConfigurationDialog(wxWindow* parent, wxWindowID id,
                            wxDefaultSize, 0);
   fgSizer78->Add(m_bSelect, 0, wxALL, 5);
 
+  m_bTides = new wxButton(this, wxID_ANY, _("Show Tides"), wxDefaultPosition,
+                          wxDefaultSize, 0);
+  fgSizer78->Add(m_bTides, 0, wxALL, 5);
+
   m_bGenerate = new wxButton(this, wxID_ANY, _("Chart Route"),
                              wxDefaultPosition, wxDefaultSize, 0);
   fgSizer78->Add(m_bGenerate, 0, wxALL, 5);
@@ -384,6 +383,9 @@ ConfigurationDialog::ConfigurationDialog(wxWindow* parent, wxWindowID id,
   m_bSelect->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
                      wxCommandEventHandler(ConfigurationDialog::OnInformation),
                      NULL, this);
+  m_bTides->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
+                    wxCommandEventHandler(ConfigurationDialog::OnTides), NULL,
+                    this);
   m_bGenerate->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
                        wxCommandEventHandler(ConfigurationDialog::OnGenerate),
                        NULL, this);
@@ -400,6 +402,9 @@ ConfigurationDialog::~ConfigurationDialog() {
   m_bSelect->Disconnect(
       wxEVT_COMMAND_BUTTON_CLICKED,
       wxCommandEventHandler(ConfigurationDialog::OnInformation), NULL, this);
+  m_bTides->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
+                    wxCommandEventHandler(ConfigurationDialog::OnTides), NULL,
+                    this);
   m_bGenerate->Disconnect(
       wxEVT_COMMAND_BUTTON_CLICKED,
       wxCommandEventHandler(ConfigurationDialog::OnGenerate), NULL, this);
@@ -437,14 +442,29 @@ void ConfigurationDialog::OnInformation(wxCommandEvent& event) {
   }
 
   rn = m_lRoutes->GetString(s);
-  /*
 
-  if (m_lRoutes->IsEmpty()){
-          wxMessageBox(_("Please select positions and generate a route"));
-          return;
-  }
-  */
   pPlugIn->m_potidalrouteDialog->GetTable(rn);
+  return;  //
+}
+
+void ConfigurationDialog::OnTides(wxCommandEvent& event) {
+  wxString rn;
+  int s;
+  s = m_lRoutes->GetSelection();
+
+  if (s == -1) {
+    wxMessageBox(_("Please select a route"));
+    return;
+  }
+
+  rn = m_lRoutes->GetString(s);
+
+  if (rn.find("DR") != std::string::npos) {
+    wxMessageBox(_("Tides only shown for EP routes"));
+    return;
+  }
+
+  pPlugIn->m_potidalrouteDialog->GetTides(rn);
   return;  //
 }
 
@@ -501,7 +521,7 @@ AboutDialogBase::AboutDialogBase(wxWindow* parent, wxWindowID id,
       _("The oTidalRoute plugin for opencpn is intended to calculate routes "
         "based on computerized tidal data.\n\nLicense: GPLv3+\n\nSource "
         "Code:\nhttps://github.com/rasbats/oTidalRoute_pi\n\nAuthor:\nMike "
-        "Rossiter\n\nMany thanks to all translators and testers."),
+        "Rossiter\n\nMany thanks to all translators and testers.\n\nThanks to Sean D'Epagnier for Weather_Routeing code.\n\n"),
       wxDefaultPosition, wxDefaultSize, 0);
   m_staticText110->Wrap(400);
   fgSizer90->Add(m_staticText110, 0, wxALL, 5);

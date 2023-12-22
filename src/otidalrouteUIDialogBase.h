@@ -38,6 +38,7 @@
 #include <wx/splitter.h>
 #include <wx/listbox.h>
 #include <wx/radiobox.h>
+#include <algorithm>
 
 class ConfigurationDialog;
 class otidalroute_pi;
@@ -81,16 +82,15 @@ public:
 
   wxTextCtrl* m_tRouteName;
   wxCheckBox* m_cbGPX;
-  wxCheckBox* m_cbArrow;
   wxChoice* m_choiceDepartureTimes;
 
   otidalrouteUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                           const wxString& title = wxEmptyString,
                           const wxPoint& pos = wxDefaultPosition,
-                          const wxSize& size = wxSize(500, 364),
-                          long style = wxCAPTION | wxCLOSE_BOX |
-                                       wxFRAME_FLOAT_ON_PARENT | wxSYSTEM_MENU |
-                                       wxTAB_TRAVERSAL | wxRESIZE_BORDER);
+                          const wxSize& size = wxSize(-1, -1),
+                          long style = wxFRAME_FLOAT_ON_PARENT |
+                                       wxDEFAULT_DIALOG_STYLE |
+                                       wxRESIZE_BORDER);
 
   ~otidalrouteUIDialogBase();
 };
@@ -148,6 +148,7 @@ private:
 protected:
   wxButton* m_bDelete;
   wxButton* m_bSelect;
+  wxButton* m_bTides;
   wxButton* m_bGenerate;
 
   wxButton* m_bClose;
@@ -155,6 +156,7 @@ protected:
   // Virtual event handlers, overide them in your derived class
   void OnDelete(wxCommandEvent& event);
   void OnInformation(wxCommandEvent& event);
+  void OnTides(wxCommandEvent& event);
   void OnGenerate(wxCommandEvent& event);
   void OnClose(wxCommandEvent& event);
 
@@ -188,7 +190,7 @@ protected:
 
 public:
   AboutDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
-                  const wxString& title = _("About Weather Routing"),
+                  const wxString& title = _("About oTidalRoute"),
                   const wxPoint& pos = wxDefaultPosition,
                   const wxSize& size = wxDefaultSize,
                   long style = wxDEFAULT_DIALOG_STYLE);

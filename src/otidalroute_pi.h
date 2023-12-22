@@ -43,6 +43,8 @@
 
 extern wxString myVColour[5];
 
+class piDC;
+
 // Define minimum and maximum versions of the grib plugin supported
 #define GRIB_MAX_MAJOR 4
 #define GRIB_MAX_MINOR 1

@@ -116,10 +116,16 @@ int otidalroute_pi::Init(void) {
   //    This PlugIn needs a toolbar icon, so request its insertion if enabled
   //    locally
   if (m_botidalrouteShowIcon)
+#ifdef ocpnUSE_SVG
+    m_leftclick_tool_id = InsertPlugInToolSVG(
+        "otidalroute", _svg_otidalroute, _svg_otidalroute,
+        _svg_otidalroute_toggled, wxITEM_CHECK, "otidalroute", "", NULL,
+        otidalroute_TOOL_POSITION, 0, this);
+#else
     m_leftclick_tool_id = InsertPlugInTool(
         _T(""), _img_otidalroute, _img_otidalroute, wxITEM_CHECK,
         _("otidalroute"), _T(""), NULL, otidalroute_TOOL_POSITION, 0, this);
-
+#endif
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
           WANTS_TOOLBAR_CALLBACK | INSTALLS_TOOLBAR_TOOL | WANTS_CONFIG |
           WANTS_PREFERENCES | WANTS_PLUGIN_MESSAGING);
@@ -459,8 +465,8 @@ bool otidalroute_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
       !m_potidalrouteOverlayFactory)
     return false;
 
-  m_potidalrouteDialog->SetViewPort(vp);
-  m_potidalrouteOverlayFactory->RenderotidalrouteOverlay(dc, vp);
+  piDC pidc(dc);
+  m_potidalrouteOverlayFactory->RenderOverlay(pidc, *vp);
   return true;
 }
 
@@ -470,8 +476,11 @@ bool otidalroute_pi::RenderGLOverlay(wxGLContext *pcontext,
       !m_potidalrouteOverlayFactory)
     return false;
 
-  m_potidalrouteDialog->SetViewPort(vp);
-  m_potidalrouteOverlayFactory->RenderGLotidalrouteOverlay(pcontext, vp);
+  piDC piDC;
+  glEnable(GL_BLEND);
+  piDC.SetVP(vp);
+
+  m_potidalrouteOverlayFactory->RenderOverlay(piDC, *vp);
   return true;
 }
 

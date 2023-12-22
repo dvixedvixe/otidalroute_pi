@@ -103,20 +103,6 @@ class otidalroute_pi;
 #define ID_TIMEZONESEL_LOCAL 7022
 #define ID_TIMEZONESEL_LMT 7023
 
-#define ID_MARKPROP 8000
-#define SYMBOL_MARKPROP_STYLE \
-  wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
-#define SYMBOL_MARKPROP_TITLE _("Waypoint Properties")
-#define SYMBOL_MARKPROP_IDNAME ID_MARKPROP
-#define SYMBOL_MARKPROP_SIZE wxSize(200, 300)
-#define SYMBOL_MARKPROP_POSITION wxDefaultPosition
-#define ID_MARKPROP_CANCEL 8001
-#define ID_MARKPROP_OK 8002
-#define ID_ICONCTRL 8003
-#define ID_LATCTRL 8004
-#define ID_LONCTRL 8005
-#define ID_SHOWNAMECHECKBOX1 8006
-
 ////@end control identifiers
 
 /*!
@@ -215,7 +201,6 @@ public:
   static bool instanceFlag;
   static RouteProp *single;
 
-  int GetTZSelection(void);
   wxRadioButton *m_prb_tzUTC;
   wxRadioButton *m_prb_tzLocal;
   wxRadioButton *m_prb_tzLMT;

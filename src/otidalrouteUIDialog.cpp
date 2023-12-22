@@ -296,10 +296,17 @@ wxString otidalrouteUIDialog::MakeDateTimeLabel(wxDateTime myDateTime) {
 }
 
 void otidalrouteUIDialog::OnInformation(wxCommandEvent& event) {
-  wxString infolocation = *GetpSharedDataLocation() +
-                          _T("plugins/otidalroute_pi/data/") +
-                          _("TidalRoutingInformation.html");
-  wxLaunchDefaultBrowser(_T("file:///") + infolocation);
+
+  wxFileName fn;
+  wxString tmp_path;
+
+  tmp_path = GetPluginDataDir("otidalroute_pi");
+  fn.SetPath(tmp_path);
+  fn.AppendDir(_T("data"));
+  fn.SetFullName("TidalRoutingInformation.html");
+
+  wxString infolocation = fn.GetFullPath();
+  wxLaunchDefaultBrowser("file:///" + infolocation);
 }
 
 void otidalrouteUIDialog::OnAbout(wxCommandEvent& event) {
@@ -309,7 +316,7 @@ void otidalrouteUIDialog::OnAbout(wxCommandEvent& event) {
 
 void otidalrouteUIDialog::OnSummary(wxCommandEvent& event) {
   TableRoutes* tableroutes = new TableRoutes(
-      this, 7000, _T(" Route Summary"), wxPoint(200, 200), wxSize(650, 200),
+      this, 7000, " Route Summary", wxPoint(200, 200), wxSize(650, 200),
       wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
   wxString RouteName;
@@ -441,7 +448,6 @@ void otidalrouteUIDialog::GetTable(wxString myRoute) {
     wxMessageBox(_("Please select or generate a route"));
     return;
   }
-
   RouteProp* routetable =
       new RouteProp(this, 7000, _T("Tidal Route Table"), wxPoint(200, 200),
                     wxSize(650, 800), wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
@@ -503,9 +509,58 @@ void otidalrouteUIDialog::GetTable(wxString myRoute) {
       }
     }
   }
-
   routetable->Show();
 }
+
+void otidalrouteUIDialog::GetTides(wxString myRoute) {
+  wxString name;
+
+  if (m_TidalRoutes.empty()) {
+    wxMessageBox(_("Please select or generate a route"));
+    return;
+  }
+
+  m_arrowList.clear(); // Prepare for drawing tidal arrows
+  Arrow m_arrow;
+
+  int in = 0;
+
+  wxString lat;
+  wxString lon;
+  wxString etd;
+  wxString cts;
+  wxString smg;
+  wxString dis;
+  wxString brg;
+  wxString set;
+  wxString rate;
+
+  for (std::list<TidalRoute>::iterator it = m_TidalRoutes.begin();
+       it != m_TidalRoutes.end(); it++) {
+    name = (*it).Name;
+    if (myRoute == name) {      
+      for (std::list<Position>::iterator itp = (*it).m_positionslist.begin();
+           itp != (*it).m_positionslist.end(); itp++) {
+        name = (*itp).name;
+        lat = (*itp).lat;
+        lon = (*itp).lon;
+        set = (*itp).set;
+        rate = (*itp).rate;
+
+        lat.ToDouble(&m_arrow.m_lat);
+        lon.ToDouble(&m_arrow.m_lon);
+        set.ToDouble(&m_arrow.m_dir);
+        rate.ToDouble(&m_arrow.m_force);
+
+        m_arrowList.push_back(m_arrow);
+
+        in++;
+      }
+    }
+  }
+  b_showTidalArrow = true;
+}
+
 
 void otidalrouteUIDialog::AddChartRoute(wxString myRoute) {
   // wxMessageBox(_("Route name exists"));
@@ -2089,7 +2144,7 @@ void otidalrouteUIDialog::CalcETA(wxCommandEvent& event, bool write_file,
           ptr.icon_name = wxT("Circle");
 
           tr.m_positionslist.push_back(ptr);
-          tr.End = waypointName[i];          
+          tr.End = waypointName[i];
           tr.Type = wxT("ETA");
           m_TidalRoutes.push_back(tr);
 

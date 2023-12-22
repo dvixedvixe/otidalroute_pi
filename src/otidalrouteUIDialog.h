@@ -171,70 +171,14 @@ struct TotalTideArrow {
 
 class TidalRoute {
 public:
-  wxString Name, Type, Start, StartTime, End, EndTime, Time, Distance,
-      m_GUID  //,
-              // AvgSpeed, MaxSpeed, AvgSpeedGround, MaxSpeedGround, AvgWind,
-              // MaxWind, AvgCurrent, MaxCurrent, AvgSwell, MaxSwell,
-              // UpwindPercentage, PortStarboard, Tacks, State
-      ;
+  wxString Name, Type, Start, StartTime, End, EndTime, Time, Distance, m_GUID;
+
   list<Position> m_positionslist;
 };
 
 static const wxString column_names[] = {
     _T(""),        _("Start"), _("Start Time"), _("End"),
     _("End Time"), _("Time"),  _("Distance")  //,
-    //_("Avg Speed"), _("Max Speed")//,
-    //_("Avg Speed Ground"), _("Max Speed Ground"),
-    //_("Avg Wind"), _("Max Wind"),
-    //_("Avg Current"), _("Max Current"),
-    //_("Avg Swell"), _("Max Swell"),
-    //_("Upwind Percentage"),
-    //_("Port Starboard"), _("Tacks"), _("State")
-};
-
-struct RouteMapConfiguration {
-  RouteMapConfiguration()
-      : StartLon(0),
-        EndLon(0),
-        grib_is_data_deficient(false) {
-  } /* avoid waiting forever in update longitudes */
-
-  wxString Start, End;
-  wxDateTime StartTime;
-
-  double dt; /* time in seconds between propagations */
-
-  double MaxDivertedCourse, MaxCourseAngle, MaxSearchAngle, MaxTrueWindKnots,
-      MaxApparentWindKnots;
-  double MaxSwellMeters, MaxLatitude, TackingTime, WindVSCurrent;
-
-  bool AvoidCycloneTracks;
-  int CycloneMonths, CycloneDays;
-
-  bool UseGrib;
-  bool AllowDataDeficient;
-  double WindStrength;  // wind speed multiplier
-
-  bool DetectLand, DetectBoundary, Currents, InvertedRegions, Anchoring;
-
-  double FromDegree, ToDegree, ByDegrees;
-
-  /* computed values */
-  std::list<double> DegreeSteps;
-  double StartLat, StartLon, EndLat, EndLon;
-
-  double StartEndBearing;   /* calculated from start and end */
-  bool positive_longitudes; /* longitudes are either 0 to 360 or -180 to 180,
-                                                    this means the map cannot
-                               cross both 0 and 180 longitude. To fully support
-                               this requires a lot more logic and would probably
-                               slow the algorithm by about 8%.  Is it even
-                               useful?  */
-
-  // parameters
-  GribRecordSet* grib;
-  wxDateTime time;
-  bool grib_is_data_deficient, polar_failed, wind_data_failed;
 };
 
 class otidalrouteUIDialog : public otidalrouteUIDialogBase {
@@ -253,11 +197,6 @@ public:
     TIME,
     DISTANCE,
     NUM_COLS
-
-    // AVGSPEED, MAXSPEED,
-    // AVGSPEEDGROUND, MAXSPEEDGROUND,
-    // AVGWIND, MAXWIND, AVGCURRENT, MAXCURRENT, AVGSWELL, MAXSWELL,
-    // UPWIND_PERCENTAGE, PORT_STARBOARD, TACKS, NUM_COLS
   };
 
   long columns[NUM_COLS];
@@ -293,6 +232,7 @@ public:
   void OnAbout(wxCommandEvent& event);
   void OnShowRouteTable();
   void GetTable(wxString myRoute);
+  void GetTides(wxString myRoute);
   void AddChartRoute(wxString myRoute);
   void AddTidalRoute(TidalRoute tr);
 
