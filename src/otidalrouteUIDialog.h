@@ -263,6 +263,8 @@ public:
   wxString rte_end;
 
   bool OpenXML(bool gotGPXFile);
+  wxDateTime AdvanceSeconds(wxDateTime currentTime,
+                                                 double HoursToAdvance);
   bool gotMyGPXFile;
   wxString rawGPXFile;
   void Addpoint(TiXmlElement* Route, wxString ptlat, wxString ptlon,

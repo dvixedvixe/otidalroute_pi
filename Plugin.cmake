@@ -32,7 +32,7 @@ set(OCPN_TEST_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME otidalroute_pi)
-set(PKG_VERSION  0.1.0)
+set(PKG_VERSION  0.2.0)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME otidalroute)    # Dialogs, installer artifacts, ...
@@ -51,13 +51,13 @@ set(PKG_HOMEPAGE https://github.com/Rasbats/otidalroute_pi)
 set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/otidalroute.html)
 
 set(SRC
-    		src/AboutDialog.cpp
-		src/AboutDialog.h
+            src/AboutDialog.cpp
+        src/AboutDialog.h
         src/bbox.cpp
         src/bbox.h
-		src/GribRecord.cpp
-		src/GribRecord.h
-		src/GribRecordSet.h
+        src/GribRecord.cpp
+        src/GribRecord.h
+        src/GribRecordSet.h
         src/otidalroute_pi.h
         src/otidalroute_pi.cpp
         src/otidalrouteOverlayFactory.cpp
@@ -68,14 +68,14 @@ set(SRC
         src/otidalrouteUIDialog.h
         src/icons.h
         src/icons.cpp
-        src/tcmgr.cpp       
+        src/tcmgr.cpp
         src/tcmgr.h
-		src/NavFunc.cpp
-		src/NavFunc.h
-		src/routeprop.cpp
-		src/routeprop.h
-		src/tableroutes.cpp
-		src/tableroutes.h
+        src/NavFunc.cpp
+        src/NavFunc.h
+        src/routeprop.cpp
+        src/routeprop.h
+        src/tableroutes.cpp
+        src/tableroutes.h
 
 )
 

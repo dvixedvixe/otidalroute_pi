@@ -430,6 +430,7 @@ void ConfigurationDialog::OnDelete(wxCommandEvent& event) {
           pPlugIn->m_potidalrouteDialog->m_default_configuration_path);
     }
   }
+  pPlugIn->m_potidalrouteDialog->b_showTidalArrow = false;
 }
 void ConfigurationDialog::OnInformation(wxCommandEvent& event) {
   wxString rn;
@@ -483,7 +484,11 @@ void ConfigurationDialog::OnGenerate(wxCommandEvent& event) {
   pPlugIn->m_potidalrouteDialog->AddChartRoute(rn);
 }
 
-void ConfigurationDialog::OnClose(wxCommandEvent& event) { Hide(); }
+void ConfigurationDialog::OnClose(wxCommandEvent& event) { 
+  
+  pPlugIn->m_potidalrouteDialog->b_showTidalArrow = false;
+  Hide(); 
+}
 
 ///////////////////////////////////////////////////////////////////////////
 
