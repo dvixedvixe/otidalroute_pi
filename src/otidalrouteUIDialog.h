@@ -177,7 +177,7 @@ public:
 };
 
 static const wxString column_names[] = {
-    _T(""),        _("Start"), _("Start Time"), _("End"),
+    "",        _("Start"), _("Start Time"), _("End"),
     _("End Time"), _("Time"),  _("Distance")  //,
 };
 

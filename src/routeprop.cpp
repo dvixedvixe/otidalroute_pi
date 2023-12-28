@@ -91,7 +91,7 @@ wxString GetDaylightString(int index)
     switch (index)
     {
         case 0:
-            return      _T(" - ");
+            return      " - ";
         case 1:
             return      _("MoTwilight");
         case 2:
@@ -106,7 +106,7 @@ wxString GetDaylightString(int index)
             return      _("Nighttime");
 
         default:
-            return      _T("");
+            return      "";
     }
 }
 
@@ -248,26 +248,6 @@ int getDaylightStatus( double lat, double lon, wxDateTime utcDateTime )
 #define    INPUT_FORMAT     1
 #define    DISPLAY_FORMAT   2
 #define    TIMESTAMP_FORMAT 3
-
-wxString ts2s(wxDateTime ts, int tz_selection, long LMT_offset, int format)
-{
-    wxString s = _T("");
-    wxString f;
-    if (format == INPUT_FORMAT) f = _T("%m/%d/%Y %H:%M");
-    else if (format == TIMESTAMP_FORMAT) f = _T("%m/%d/%Y %H:%M:%S");
-    else f = _T(" %m/%d %H:%M");
-    switch (tz_selection) {
-    case 0: s.Append(ts.Format(f));
-        if (format != INPUT_FORMAT) s.Append(_T(" UT"));
-        break;
-    case 1: s.Append(ts.FromUTC().Format(f)); break;
-    case 2:
-        wxTimeSpan lmt(0,0,(int)LMT_offset,0);
-        s.Append(ts.Add(lmt).Format(f));
-        if (format != INPUT_FORMAT) s.Append(_T(" LMT"));
-    }
-    return(s);
-}
 
 /*!
  * RouteProp type definition
@@ -557,7 +537,7 @@ void RouteProp::CreateControlsCompact()
     m_wpList->InsertColumn( 4, _("Latitude"), wxLIST_FORMAT_LEFT, char_size * 11 );
     m_wpList->InsertColumn( 5, _("Longitude"), wxLIST_FORMAT_LEFT, char_size * 11 );
     m_wpList->InsertColumn( 6, _("ETA"), wxLIST_FORMAT_LEFT, char_size * 15 );
-    m_wpList->InsertColumn( 7, _("Speed"), wxLIST_FORMAT_CENTER, char_size * 9 );
+    m_wpList->InsertColumn( 7, _("SMG"), wxLIST_FORMAT_CENTER, char_size * 9 );
     m_wpList->InsertColumn( 8, _("Course to steer"), wxLIST_FORMAT_LEFT, char_size * 11 );
     m_wpList->InsertColumn( 9, _("Tidal Set"), wxLIST_FORMAT_LEFT, char_size * 11 );
     m_wpList->InsertColumn( 10, _("Tidal Rate"), wxLIST_FORMAT_LEFT, char_size * 10 );
@@ -759,7 +739,7 @@ void RouteProp::CreateControls()
       m_wpList->InsertColumn( 4, _("Latitude"), wxLIST_FORMAT_LEFT, char_size * 11 );
       m_wpList->InsertColumn( 5, _("Longitude"), wxLIST_FORMAT_LEFT, char_size * 11 );
       m_wpList->InsertColumn( 6, _("ETA"), wxLIST_FORMAT_LEFT, char_size * 15 );
-      m_wpList->InsertColumn( 7, _("Speed"), wxLIST_FORMAT_CENTER, char_size * 9 );
+      m_wpList->InsertColumn( 7, _("SMG"), wxLIST_FORMAT_CENTER, char_size * 9 );
       m_wpList->InsertColumn( 8, _("CTS"), wxLIST_FORMAT_LEFT, char_size * 11 );
       m_wpList->InsertColumn( 9, _("Tidal Set"), wxLIST_FORMAT_LEFT, char_size * 11 );
 	  m_wpList->InsertColumn( 10, _("Tidal Rate"), wxLIST_FORMAT_LEFT, char_size * 10 );

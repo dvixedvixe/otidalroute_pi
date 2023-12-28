@@ -33,16 +33,14 @@
 #include "AboutDialog.h"
 #include "otidalroute_pi.h"
 
-//#include "Utilities.h"
-
 AboutDialog::AboutDialog( wxWindow *parent )
     : AboutDialogBase(parent)
 {
-    m_stVersion->SetLabel(wxString::Format(_T("%d.%d"),
+    m_stVersion->SetLabel(wxString::Format("%d.%d",
                                            PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR));
 }
 
 void AboutDialog::OnAboutAuthor( wxCommandEvent& event )
 {
-   // wxLaunchDefaultBrowser(_T(""));
+   // wxLaunchDefaultBrowser("");
 }

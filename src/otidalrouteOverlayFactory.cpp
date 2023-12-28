@@ -291,7 +291,7 @@ wxImage &otidalrouteOverlayFactory::DrawGLText(double value, int precision) {
 
   int p = precision;
 
-  labels.Printf(_T("%.*f"), p, value);
+  labels.Printf("%.*f", p, value);
 
   wxMemoryDC mdc(wxNullBitmap);
 
@@ -356,7 +356,7 @@ wxImage &otidalrouteOverlayFactory::DrawGLTextDir(double value, int precision) {
 
   int p = precision;
 
-  labels.Printf(_T("%03.*f"), p, value);
+  labels.Printf("%03.*f", p, value);
 
   wxMemoryDC mdc(wxNullBitmap);
 
@@ -649,7 +649,7 @@ void otidalrouteOverlayFactory::DrawGLLabels(otidalrouteOverlayFactory *pof,
 
 wxImage &otidalrouteOverlayFactory::DrawGLPolygon() {
   wxString labels;
-  labels = _T("");  // dummy label for drawing with
+  labels = "";  // dummy label for drawing with
 
   wxColour c_orange = c_GLcolour;
 
@@ -867,16 +867,6 @@ void otidalrouteOverlayFactory::DrawAllCurrentsInViewPort(
   bool bnew_val = true;
   double lon_last = 0.;
 
-  //  Establish a "home" location
-  /*
-      wxString g_SData_Locn = *GetpSharedDataLocation();
-
-  // Establish location of Tide and Current data
-  pTC_Dir = new wxString(_T("tcdata"));
-  pTC_Dir->Prepend(g_SData_Locn);
-  pTC_Dir->Append(wxFileName::GetPathSeparator());
-      */
-
   wxDateTime yn = m_dlg.m_dtNow;
 
   double myLat;
@@ -889,15 +879,11 @@ void otidalrouteOverlayFactory::DrawAllCurrentsInViewPort(
     dir = (*it).m_dir;
     tcvalue = (*it).m_force;
 
-    // wxMessageBox(_T("here"));
-
     myLLBox = new LLBBox;
     wxBoundingBox LLBBox(BBox->lon_min, BBox->lat_min, BBox->lon_max,
                          BBox->lat_max);
 
     // if( LLBBox.PointInBox( myLon, myLat, 0 )   )  {
-
-    // wxMessageBox(wxString::Format(_T("%5.2f"), tcvalue));
 
     int pixxc, pixyc;
     wxPoint cpoint;
@@ -905,7 +891,6 @@ void otidalrouteOverlayFactory::DrawAllCurrentsInViewPort(
     pixxc = cpoint.x;
     pixyc = cpoint.y;
 
-    // wxMessageBox(wxString::Format(_T("%5.2f"), myLat));
     //     Adjust drawing size using logarithmic scale
     double a1 = tcvalue * 5;
     // a1 = wxMax(5.0, a1);      // Current values less than 0.1 knot

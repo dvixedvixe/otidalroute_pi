@@ -32,7 +32,7 @@ set(OCPN_TEST_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME otidalroute_pi)
-set(PKG_VERSION  0.2.0)
+set(PKG_VERSION  0.3.0)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME otidalroute)    # Dialogs, installer artifacts, ...

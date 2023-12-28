@@ -38,9 +38,9 @@
 #include "otidalrouteUIDialogBase.h"
 #include "otidalrouteUIDialog.h"
 
-wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
-                        _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
-                        _T("rgb(248, 0, 0)")};
+wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
+                        "rgb(253, 184, 19)", "rgb(248, 128, 64)",
+                        "rgb(248, 0, 0)"};
 
 // the class factories, used to create and destroy instances of the PlugIn
 
@@ -72,7 +72,7 @@ otidalroute_pi::otidalroute_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
 
   tmp_path = GetPluginDataDir("otidalroute_pi");
   fn.SetPath(tmp_path);
-  fn.AppendDir(_T("data"));
+  fn.AppendDir("data");
   fn.SetFullName("otidalroute_pi_panel_icon.png");
 
   wxString shareLocn = fn.GetFullPath();
@@ -81,7 +81,7 @@ otidalroute_pi::otidalroute_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   if (panelIcon.IsOk())
     m_panelBitmap = wxBitmap(panelIcon);
   else
-    wxLogMessage(_T("    e_timer_pi panel icon NOT loaded"));
+    wxLogMessage("    oTidalRoute_pi panel icon NOT loaded");
   m_bShowotidalroute = false;
 }
 
@@ -91,7 +91,7 @@ otidalroute_pi::~otidalroute_pi(void) {
 }
 
 int otidalroute_pi::Init(void) {
-  AddLocaleCatalog(_T("opencpn-otidalroute_pi"));
+  AddLocaleCatalog("opencpn-otidalroute_pi");
 
   // Set some default private member parameters
   m_otidalroute_dialog_x = 0;
@@ -123,8 +123,8 @@ int otidalroute_pi::Init(void) {
         otidalroute_TOOL_POSITION, 0, this);
 #else
     m_leftclick_tool_id = InsertPlugInTool(
-        _T(""), _img_otidalroute, _img_otidalroute, wxITEM_CHECK,
-        _("otidalroute"), _T(""), NULL, otidalroute_TOOL_POSITION, 0, this);
+        "", _img_otidalroute, _img_otidalroute, wxITEM_CHECK,
+        _("otidalroute"), "", NULL, otidalroute_TOOL_POSITION, 0, this);
 #endif
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
           WANTS_TOOLBAR_CALLBACK | INSTALLS_TOOLBAR_TOOL | WANTS_CONFIG |
@@ -158,7 +158,7 @@ int otidalroute_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
 
 wxBitmap *otidalroute_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
-wxString otidalroute_pi::GetCommonName() { return _T("otidalroute"); }
+wxString otidalroute_pi::GetCommonName() { return "otidalroute"; }
 
 wxString otidalroute_pi::GetShortDescription() {
   return _("otidalroute PlugIn for OpenCPN");
@@ -263,7 +263,7 @@ void otidalroute_pi::OnToolbarToolCallback(int id) {
                                                 m_display_height);
   }
 
-  SendPluginMessage(wxString(_T("GRIB_TIMELINE_REQUEST")), _T(""));
+  SendPluginMessage(wxString("GRIB_TIMELINE_REQUEST"), "");
 
   // Qualify the otidalroute dialog position
   bool b_reset_pos = false;
@@ -337,7 +337,7 @@ void otidalroute_pi::OnotidalrouteDialogClose() {
 
 void otidalroute_pi::SetPluginMessage(wxString &message_id,
                                       wxString &message_body) {
-  if (message_id == _T("GRIB_TIMELINE")) {
+  if (message_id == "GRIB_TIMELINE") {
     Json::Reader r;
     Json::Value v;
     r.parse(static_cast<std::string>(message_body), v);
@@ -353,7 +353,7 @@ void otidalroute_pi::SetPluginMessage(wxString &message_id,
       adjTime = time - correctTCTime;
 
       wxString dt;
-      dt = adjTime.Format(_T("%Y-%m-%d  %H:%M "));
+      dt = adjTime.Format("%Y-%m-%d  %H:%M ");
       /*
       if (m_potidalrouteDialog) {
         m_potidalrouteDialog->m_GribTimelineTime = time.ToUTC();
@@ -361,7 +361,7 @@ void otidalroute_pi::SetPluginMessage(wxString &message_id,
       }*/
     }
   }
-  if (message_id == _T("GRIB_TIMELINE_RECORD")) {
+  if (message_id == "GRIB_TIMELINE_RECORD") {
     Json::Reader r;
     Json::Value v;
     r.parse(static_cast<std::string>(message_body), v);
@@ -380,7 +380,7 @@ void otidalroute_pi::SetPluginMessage(wxString &message_id,
       if (grib_version < grib_min || grib_version > grib_max) {
         wxMessageDialog mdlg(
             m_parent_window,
-            _("Grib plugin version not supported.") + _T("\n\n") +
+            _("Grib plugin version not supported.") + "\n\n" +
                 wxString::Format(_("Use versions %d.%d to %d.%d"),
                                  GRIB_MIN_MAJOR, GRIB_MIN_MINOR, GRIB_MAX_MAJOR,
                                  GRIB_MAX_MINOR),
@@ -430,25 +430,25 @@ wxString otidalroute_pi::StandardPath() {
 #ifdef __WXOSX__
   wxString stdPath =
       (std_path.GetUserConfigDir() + s +
-       _T("opencpn"));  // should be ~/Library/Preferences/opencpn
+       "opencpn");  // should be ~/Library/Preferences/opencpn
 #endif
 
-  return stdPath + wxFileName::GetPathSeparator() + _T("plugins") +
-         wxFileName::GetPathSeparator() + _T("otidalroute") +
+  return stdPath + wxFileName::GetPathSeparator() + "plugins" +
+         wxFileName::GetPathSeparator() + "otidalroute" +
          wxFileName::GetPathSeparator();
 
-  stdPath += s + _T("plugins");
+  stdPath += s + "plugins";
   if (!wxDirExists(stdPath)) wxMkdir(stdPath);
 
-  stdPath += s + _T("otidalroute");
+  stdPath += s + "otidalroute";
 
 #ifdef __WXOSX__
   // Compatibility with pre-OCPN-4.2; move config dir to
   // ~/Library/Preferences/opencpn if it exists
-  wxString oldPath = (std_path.GetUserConfigDir() + s + _T("plugins") + s +
-                      _T("weather_routing"));
+  wxString oldPath = (std_path.GetUserConfigDir() + s + "plugins" + s +
+                      "otidalroute");
   if (wxDirExists(oldPath) && !wxDirExists(stdPath)) {
-    wxLogMessage("weather_routing_pi: moving config dir %s to %s", oldPath,
+    wxLogMessage("otidalroute_pi: moving config dir %s to %s", oldPath,
                  stdPath);
     wxRenameFile(oldPath, stdPath);
   }
@@ -498,34 +498,20 @@ bool otidalroute_pi::LoadConfig(void) {
 
   pConf->SetPath(_T( "/PlugIns/otidalroute" ));
 
-  m_bCopyUseRate = pConf->Read(_T( "otidalrouteUseRate" ), 1);
-  m_bCopyUseDirection = pConf->Read(_T( "otidalrouteUseDirection" ), 1);
-  m_botidalrouteUseHiDef = pConf->Read(_T( "otidalrouteUseFillColour" ), 1);
+  m_bCopyUseRate = pConf->Read("otidalrouteUseRate", 1);
+  m_bCopyUseDirection = pConf->Read("otidalrouteUseDirection", 1);
+  m_botidalrouteUseHiDef = pConf->Read("otidalrouteUseFillColour", 1);
 
-  // m_CopyFolderSelected = pConf->Read ( _T( "otidalrouteFolder" ));
-  // if (m_CopyFolderSelected == wxEmptyString){
+  m_otidalroute_dialog_sx = pConf->Read("otidalrouteDialogSizeX", 300L);
+  m_otidalroute_dialog_sy = pConf->Read("otidalrouteDialogSizeY", 540L);
+  m_otidalroute_dialog_x = pConf->Read("otidalrouteDialogPosX", 20L);
+  m_otidalroute_dialog_y = pConf->Read("otidalrouteDialogPosY", 170L);
 
-  // wxString g_SData_Locn = *GetpSharedDataLocation();
-
-  // Establish location of Tide and Current data
-  // pTC_Dir = new wxString(_T("tcdata"));
-  // pTC_Dir->Prepend(g_SData_Locn);
-
-  // m_CopyFolderSelected = *pTC_Dir;
-  //}
-
-  // m_CopyIntervalSelected = pConf->Read ( _T ( "otidalrouteInterval"), 20L);
-
-  m_otidalroute_dialog_sx = pConf->Read(_T( "otidalrouteDialogSizeX" ), 300L);
-  m_otidalroute_dialog_sy = pConf->Read(_T( "otidalrouteDialogSizeY" ), 540L);
-  m_otidalroute_dialog_x = pConf->Read(_T( "otidalrouteDialogPosX" ), 20L);
-  m_otidalroute_dialog_y = pConf->Read(_T( "otidalrouteDialogPosY" ), 170L);
-
-  pConf->Read(_T("VColour0"), &myVColour[0], myVColour[0]);
-  pConf->Read(_T("VColour1"), &myVColour[1], myVColour[1]);
-  pConf->Read(_T("VColour2"), &myVColour[2], myVColour[2]);
-  pConf->Read(_T("VColour3"), &myVColour[3], myVColour[3]);
-  pConf->Read(_T("VColour4"), &myVColour[4], myVColour[4]);
+  pConf->Read("VColour0", &myVColour[0], myVColour[0]);
+  pConf->Read("VColour1", &myVColour[1], myVColour[1]);
+  pConf->Read("VColour2", &myVColour[2], myVColour[2]);
+  pConf->Read("VColour3", &myVColour[3], myVColour[3]);
+  pConf->Read("VColour4", &myVColour[4], myVColour[4]);
 
   return true;
 }
@@ -535,24 +521,21 @@ bool otidalroute_pi::SaveConfig(void) {
 
   if (!pConf) return false;
 
-  pConf->SetPath(_T( "/PlugIns/otidalroute" ));
-  pConf->Write(_T( "otidalrouteUseRate" ), m_bCopyUseRate);
-  pConf->Write(_T( "otidalrouteUseDirection" ), m_bCopyUseDirection);
-  pConf->Write(_T( "otidalrouteUseFillColour" ), m_botidalrouteUseHiDef);
+  pConf->SetPath("/PlugIns/otidalroute");
+  pConf->Write("otidalrouteUseRate", m_bCopyUseRate);
+  pConf->Write("otidalrouteUseDirection", m_bCopyUseDirection);
+  pConf->Write("otidalrouteUseFillColour", m_botidalrouteUseHiDef);
 
-  // pConf->Write ( _T( "otidalrouteFolder" ), m_CopyFolderSelected);
-  // pConf->Write ( _T( "otidalrouteInterval" ), m_CopyIntervalSelected);
+  pConf->Write("otidalrouteDialogSizeX", m_otidalroute_dialog_sx);
+  pConf->Write("otidalrouteDialogSizeY", m_otidalroute_dialog_sy);
+  pConf->Write("otidalrouteDialogPosX", m_otidalroute_dialog_x);
+  pConf->Write("otidalrouteDialogPosY", m_otidalroute_dialog_y);
 
-  pConf->Write(_T( "otidalrouteDialogSizeX" ), m_otidalroute_dialog_sx);
-  pConf->Write(_T( "otidalrouteDialogSizeY" ), m_otidalroute_dialog_sy);
-  pConf->Write(_T( "otidalrouteDialogPosX" ), m_otidalroute_dialog_x);
-  pConf->Write(_T( "otidalrouteDialogPosY" ), m_otidalroute_dialog_y);
-
-  pConf->Write(_T("VColour0"), myVColour[0]);
-  pConf->Write(_T("VColour1"), myVColour[1]);
-  pConf->Write(_T("VColour2"), myVColour[2]);
-  pConf->Write(_T("VColour3"), myVColour[3]);
-  pConf->Write(_T("VColour4"), myVColour[4]);
+  pConf->Write("VColour0", myVColour[0]);
+  pConf->Write("VColour1", myVColour[1]);
+  pConf->Write("VColour2", myVColour[2]);
+  pConf->Write("VColour3", myVColour[3]);
+  pConf->Write("VColour4", myVColour[4]);
 
   return true;
 }
